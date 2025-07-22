@@ -5,13 +5,13 @@ const booksListData = [
   {
     id: 1,
     name: "Advanced Physics by H.C. Verma",
-    image: "/hcverma.webp",
+    image: "/assets/hcverma.webp",
     price: 200,
   },
   {
     id: 2,
     name: "Organic Chemistry by Morrison Boyd",
-    image: "https://example.com/chemistry-book.jpg",
+    image: "/assets/organic.jpg",
     price: 600,
   },
   {
