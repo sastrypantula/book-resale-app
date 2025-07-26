@@ -1,64 +1,37 @@
 const mongoose = require('mongoose');
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const userSchema = new Schema({
-    firstName:{
-        type: String,
-        required: true,
-        minLength:3,
-        maxLength:20
-    },
-    emailId:{
-        type:String,
-        required:true,
-        unique:true,
-        trim: true,
-        lowercase:true,
-        immutable: true,
-    },
-    role:{
-        type:String,
-        enum:['buyer','seller'],
-        required:true,
-    },
-    booksPurchased:{
-        type:[{
-            bookId:{
-                type:String,
-                required:true
-            },
-            bookName:{
-                type:String,
-                required:true
-            },
-            purchasePrice:{
-                type:Number,
-                required:true
-            },
-            bookImage:{
-                type:String,
-                required:true
-            },
-            sellerId:{
-                type:String,
-                required:true
-            },
-            purchaseDate:{
-                type:Date,
-                default:Date.now
-            }
-        }],
-        default:[]
-    },
-    password:{
-        type:String,
-        required: true
-    }
-},{
-    timestamps:true
-});
+  name: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  role: {
+    type: String,
+    enum: ['buyer', 'seller', 'both'],
+    default: 'buyer'
+  },
+  booksListed: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Book',
+    default: []
+  }],
+  booksPurchased: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Book',
+    default: []
+  }]
+}, { timestamps: true });
 
-
-const User = mongoose.model("user",userSchema);
-
+const User = mongoose.model('User', userSchema);
 module.exports = User;

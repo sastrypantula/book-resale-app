@@ -4,14 +4,14 @@ const validator =require("validator");
 
 const validate = (data)=>{
    
-    const mandatoryField = ['firstName',"emailId",'password',"role"];
+    const mandatoryField = ['name', 'email', 'password', 'role'];
 
     const IsAllowed = mandatoryField.every((k)=> Object.keys(data).includes(k));
 
     if(!IsAllowed)
         throw new Error("Some Field Missing");
 
-    if(!validator.isEmail(data.emailId))
+    if(!validator.isEmail(data.email))
         throw new Error("Invalid Email");
 
     if(!validator.isStrongPassword(data.password))
@@ -19,3 +19,4 @@ const validate = (data)=>{
 }
 
 module.exports = validate;
+
